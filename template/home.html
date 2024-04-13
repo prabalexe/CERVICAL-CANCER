@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Risk Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image: url('https://in.images.search.yahoo.com/images/view;_ylt=AwrPqiqeSvdlPoAOznm9HAx.;_ylu=c2VjA3NyBHNsawNpbWcEb2lkAzM3MGI5OWVjZThmN2E1MmY4MjEzNDQ4MWI0ZTAwOTA4BGdwb3MDMzQEaXQDYmluZw--?back=https%3A%2F%2Fin.images.search.yahoo.com%2Fsearch%2Fimages%3Fp%3Dcervical%2Bcancer%26type%3DE210IN826G0%26fr%3Dmcafee%26fr2%3Dpiv-web%26tab%3Dorganic%26ri%3D34&w=4827&h=3620&imgurl=www.nidirect.gov.uk%2Fsites%2Fdefault%2Ffiles%2Fimages%2Fnews%2Fcervical-cancer-cell.jpg&rurl=https%3A%2F%2Fwww.nidirect.gov.uk%2Fnews%2Fscreening-can-help-prevent-cervical-cancer&size=1457.3KB&p=cervical+cancer&oid=370b99ece8f7a52f82134481b4e00908&fr2=piv-web&fr=mcafee&tt=Screening+can+help+prevent+cervical+cancer+%7C+nidirect&b=0&ni=21&no=34&ts=&tab=organic&sigr=SD6.e_hmWPv4&sigb=ijuQxGrnFL77&sigi=1GzMpW0Y4z95&sigt=.jEcFi2mxHAq&.crumb=4cuAFmepKVG&fr=mcafee&fr2=piv-web&type=E210IN826G0'); /* Replace 'medical-background.jpg' with your image file path */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Add transparency to the container */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="number"], input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .result h3 {
+            margin-bottom: 10px;
+        }
+
+        .result p {
+            margin-bottom: 0;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CERVICAL CANCER RISK DETECTION</h1>
+        <form id="predictionForm" method="POST" action="/predict">
+            <label for="Age">Age:</label>
+            <input type="number" min="0" id="Age" name="Age" required>
+
+            <label for="Numberofsexualpartners">Number of Sexual Partners:</label>
+            <input type="number" id="Numberofsexualpartners" name="Number of sexual partners" required>
+
+            <label for="Firstsexualintercourse">First Sexual Intercourse:</label>
+            <input type="number" id="Firstsexualintercourse" name="First sexual intercourse" required>
+
+            <label for="Numofpregnancies">Number of Pregnancies:</label>
+            <input type="number" id="Numofpregnancies" name="Num of pregnancies" required>
+
+            <label for="Smokes">Smokes (years):</label>
+            <input type="number" id="Smokes" name="Smokes (years)" required>
+
+            <label for="IUD">IUD (years):</label>
+            <input type="number" id="IUD" name="IUD (years)" required>
+
+            <!-- Add more input fields as needed -->
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result is not none %}
+        <div class="result">
+            <h3>Prediction Result:</h3>
+            <p>{{ result }}</p>
+            <h3>Risk Statement:</h3>
+            <p>{{ risk_statement }}</p>
+            <a href="https://www.mayoclinic.org/diseases-conditions/cervical-cancer/symptoms-causes/syc-20352501" class="redirect-link">CLICK HERE TO KNOW ABOUT CERVICAL CANCER</a>
+        </div>
+        {% endif %}
+        
+        <div class="disclaimer">
+            <p><strong>Disclaimer:</strong> The prediction provided on this page is for assessment purposes only and may not always be accurate. It is recommended to consult a healthcare professional for accurate diagnosis and advice.</p>
+        </div>
+        
+        <form action="http://127.0.0.1:5000/book_appointment">
+            <button type="submit" class="btn btn-primary">CONSULT NOW</button>
+        </form>
+    </div>
+</body>
+</html>
+ v 
